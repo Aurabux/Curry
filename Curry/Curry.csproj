@@ -27,4 +27,12 @@
     <ProjectReference Include="..\Curry.Utility\Curry.Utility.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\Category\" />
+    <Folder Include="Pages\Admin\FoodType\" />
+    <Folder Include="Pages\Admin\MenuItem\" />
+    <Folder Include="Pages\Admin\User\" />
+  </ItemGroup>
+
 </Project>
