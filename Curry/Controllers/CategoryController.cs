@@ -16,6 +16,7 @@ namespace Curry.Controllers
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+           
         }
 
         public IActionResult Get()

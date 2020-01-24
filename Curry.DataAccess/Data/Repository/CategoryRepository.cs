@@ -14,7 +14,7 @@ namespace Curry.DataAccess.Data.Repository
         private readonly ApplicationDbContext _db;
         public CategoryRepository(ApplicationDbContext db) : base(db)
         {
-            _db = db; 
+            _db = db;
         }
 
         public IEnumerable<SelectListItem> GetCategoryListForDropDown()
