@@ -24,7 +24,7 @@ namespace Curry.DataAccess.Data.Repository
             dbset.Add(entity);
         }
 
-        public T GeFirstOrDefault(Expression<Func<T, bool>> filer = null, string includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filer = null, string includeProperties = null)
         {
             IQueryable<T> query = dbset;
             if (filer != null)

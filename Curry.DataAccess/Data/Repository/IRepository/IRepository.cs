@@ -17,7 +17,7 @@ namespace Curry.DataAccess.Data.Repository.IRepository
             string includeProperties = null);
 
         //get the first or default
-        T GeFirstOrDefault(
+        T GetFirstOrDefault(
           Expression<Func<T, bool>> filer = null,
           string includeProperties = null);
 
