@@ -4,10 +4,10 @@ $(document).ready(function (){
     loadList();
 });
 
-function loadlist() {
-    dataTable = $('#DT_load').DataTable({
+function loadList() {
+    dataTable = $('#DT_Load').DataTable({
         "ajax": {
-            "url": "/api/Category/",
+            "url": "/api/category/",
             "type": "GET",
             "datatype": "json"
         },
