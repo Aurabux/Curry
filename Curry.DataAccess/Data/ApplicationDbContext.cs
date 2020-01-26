@@ -15,5 +15,7 @@ namespace Curry.DataAccess.Data
         }
 
         public DbSet<Category> Category { get; set; }
+
+        //public DbSet<Category> FoodType { get; set; }
     }
 }
