@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Curry.Models
 {
-    class FoodType
+    public class FoodType
     {
         [Key]
         public int Id { get; set; }
