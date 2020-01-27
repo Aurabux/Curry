@@ -28,7 +28,7 @@ namespace Curry.DataAccess.Data.Repository
 
         public void Update(FoodType foodType)
         {
-            var objFromDb = _db.Category.FirstOrDefault(s => s.Id == foodType.Id);
+            var objFromDb = _db.FoodType.FirstOrDefault(s => s.Id == foodType.Id);
 
             objFromDb.Name = foodType.Name;
 

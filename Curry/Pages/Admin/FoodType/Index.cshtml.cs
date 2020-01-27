@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-//CATEGOERY INDEXCSHARP
+//FOODTYPE INDEXCSHARP!!!
 namespace Curry
 {
-    public class IndexModel : PageModel
+    public class IndexFTModel : PageModel
     {
         public void OnGet()
         {
