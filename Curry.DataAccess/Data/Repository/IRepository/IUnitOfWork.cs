@@ -8,6 +8,7 @@ namespace Curry.DataAccess.Data.Repository.IRepository
     {
        ICategoryRepository Category{ get;}
        IFoodTypeRepository FoodType { get;}
-       void Save();
+       IMenuItemRepository MenuItem { get; }
+        void Save();
     }
 }
