@@ -25,13 +25,15 @@ namespace Curry.Pages.Admin.MenuItem
         public MenuItemVM MenuItemObj { get; set; }
         public IActionResult OnGet(int? id)
         {
-            MenuItemObj = new MenuItemVM()
+            MenuItemObj = new MenuItemVM
             {
                 CategoryList =
                 _unitOfWork.Category.GetCategoryListForDropDown(),
 
                 FoodTypeList =
-                _unitOfWork.FoodType.GetFoodTypeListForDropDown()
+                _unitOfWork.FoodType.GetFoodTypeListForDropDown(),
+
+                MenuItem = new Models.MenuItem()
             };
             if (id!=null)
             {
@@ -74,7 +76,7 @@ namespace Curry.Pages.Admin.MenuItem
                 {
                     string fileName = Guid.NewGuid().ToString();
 
-                    var uploads = Path.Combine(webRootPath, @"images\menuItems");
+                    var uploads = Path.Combine(webRootPath, @"\images\menuItems\");
 
                     var extension = Path.GetExtension(files[0].FileName);
 

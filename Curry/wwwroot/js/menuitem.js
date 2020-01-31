@@ -20,10 +20,10 @@ function loadList() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                        <a href= "/Admin/menuitem/upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                        <a href= "/Admin/MenuItem/Upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
                             <i class="far fa edit"></i> Edit   
                                 </a>
-                        <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=Delete('/api/category/'+${data})>
+                        <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=Delete('/api/menuitem/'+${data})>
                             <i class="far fa-trash-alt"></i> Delete
                         </a>
                             </div >`;

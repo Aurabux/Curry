@@ -38,8 +38,18 @@
                         <label asp-for="MenuItemObj.MenuItem.Desription"></label>
                     </div>
                     <div class="col-9">
-                        <textarea class="form-control" asp-for="MenuItemObj.MenuItem.Desription" id="txtDesc" style="height:200px;" />
+                        <textarea class="form-control" asp-for="MenuItemObj.MenuItem.Desription" id="txtDesc" style="height:200px;"></textarea>
 
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemObj.MenuItem.Image"></label>
+                    </div>
+                    <div class="col-9">
+
+                        <input type="file" class="form-control" asp-for="MenuItemObj.MenuItem.Image" name="files" id="files" />
 
                     </div>
                 </div>
@@ -53,7 +63,7 @@
                        "-Please select a Category",
                        new { @class = "form=control" })
 
-                        <input type="file" class="form-control" asp-for="MenuItemObj.MenuItem.Image" id="files" />
+                        
 
                     </div>
                 </div>
@@ -64,10 +74,10 @@
                     <div class="col-9">
                         @Html.DropDownListFor(m => m.MenuItemObj.MenuItem.FoodTypeId,
                        Model.MenuItemObj.FoodTypeList,
-                       "-Please select a Category",
+                       "-Please select a Food Type",
                        new { @class = "form=control" })
 
-                        <input type="file" class="form-control" asp-for="MenuItemObj.MenuItem.FoodTypeId" id="files" />
+
 
                     </div>
                 </div>
@@ -75,11 +85,14 @@
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                @if(Model.MenuItemObj.MenuItem.Id !=0)
+                                @if (Model.MenuItemObj.MenuItem.Id != 0)
                                 {
-
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
                                 }
-                                <button type="submit" class="btn btn-primary form-control">Update</button>
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
+                                }
                             </div>
                             <div class="col-6">
                                 <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
@@ -89,6 +102,12 @@
 
                 </div>
             </div>
+            @if(Model.MenuItemObj.MenuItem != null)
+            {
+                <div class="col-4 p-4">
+                    <img src="@Model.MenuItemObj.MenuItem.Image" width="100%"  style="border-radius:5px; border:1px solid #bbb9b9;"/>
+                </div>
+            }
         </div> 
     </div>
 </form>
