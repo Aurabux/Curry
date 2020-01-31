@@ -7,6 +7,9 @@ using Curry.DataAccess.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;
+using Curry.Models.ViewModels;
+using System.IO;
+
 namespace Curry.Pages.Admin.MenuItem
 {
     public class UpsertModel : PageModel
@@ -19,13 +22,20 @@ namespace Curry.Pages.Admin.MenuItem
             _hostEnviroment = hostEnvironment;
         }
         [BindProperty]
-        public Models.MenuItem MenuItemObj { get; set; }
+        public MenuItemVM MenuItemObj { get; set; }
         public IActionResult OnGet(int? id)
         {
-            MenuItemObj = new Models.MenuItem();
+            MenuItemObj = new MenuItemVM()
+            {
+                CategoryList =
+                _unitOfWork.Category.GetCategoryListForDropDown(),
+
+                FoodTypeList =
+                _unitOfWork.FoodType.GetFoodTypeListForDropDown()
+            };
             if (id!=null)
             {
-                MenuItemObj = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id);
+                MenuItemObj.MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id);
                 if(MenuItemObj == null)
                 {
                     return NotFound();
@@ -35,17 +45,56 @@ namespace Curry.Pages.Admin.MenuItem
         }
         public IActionResult OnPost()
         {
+            string webRootPath = _hostEnviroment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
             if(!ModelState.IsValid)
             {
                 return Page();
             }
-            if(MenuItemObj.Id == 0)
+            if(MenuItemObj.MenuItem.Id == 0)
             {
-                _unitOfWork.MenuItem.Add(MenuItemObj);
+                string fileName = Guid.NewGuid().ToString();
+
+                var uploads = Path.Combine(webRootPath, @"images\menuItems");
+
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filestream);
+                }
+                MenuItemObj.MenuItem.Image = @"\images\menuItems\" + fileName + extension;
+                _unitOfWork.MenuItem.Add(MenuItemObj.MenuItem);
             }
             else
             {
-                _unitOfWork.MenuItem.Update(MenuItemObj);
+                var objFromDb =
+                    _unitOfWork.MenuItem.Get(MenuItemObj.MenuItem.Id);
+                if(files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+
+                    var uploads = Path.Combine(webRootPath, @"images\menuItems");
+
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    var imagePath = Path.Combine(webRootPath, objFromDb.Image.TrimStart('\\'));
+                    if(System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                    using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(filestream);
+                    }
+                    MenuItemObj.MenuItem.Image = @"\images\menuItems\" + fileName + extension;
+
+                }
+                else
+                {
+                    MenuItemObj.MenuItem.Image = objFromDb.Image;
+                }
+                _unitOfWork.MenuItem.Update(MenuItemObj.MenuItem);
             }
             _unitOfWork.Save();
             return RedirectToPage("./Index");
