@@ -16,7 +16,6 @@ using Microsoft.Extensions.Hosting;
 using Curry.DataAccess.Data;
 using Curry.DataAccess.Data.Repository.IRepository;
 using Curry.DataAccess.Data.Repository;
-using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Curry
 {
@@ -38,7 +37,6 @@ namespace Curry
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultTokenProviders()
-                //.AddDefault(UIFramework.Boostrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //services.AddSingleton< IEmailSender, IEmailSender>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

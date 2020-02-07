@@ -10,7 +10,6 @@ using Curry.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -97,6 +96,13 @@ namespace Curry.Areas.Identity.Pages.Account
                     PhoneNumber = Input.PhoneNumber
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                if(!await _roleManager.RoleExistsAsync(SD.ManagerRole))
+                {
+                    _roleManager.CreateAsync(new IdentityRole(SD.ManagerRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(SD.DriverRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(SD.KitchenRole)).GetAwaiter().GetResult();
+                    _roleManager.CreateAsync(new IdentityRole(SD.CustomerRole)).GetAwaiter().GetResult();
+                }
                 if (result.Succeeded)
                 {
                     if (role == SD.KitchenRole)
