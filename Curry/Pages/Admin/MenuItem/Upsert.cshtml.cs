@@ -9,9 +9,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;
 using Curry.Models.ViewModels;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using Curry.Utility;
 
 namespace Curry.Pages.Admin.MenuItem
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

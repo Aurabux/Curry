@@ -6,9 +6,12 @@ using Curry.DataAccess.Data.Repository.IRepository;
 using Curry.DataAccess.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+using Curry.Utility;
 
 namespace Curry
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

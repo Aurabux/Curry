@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Curry.DataAccess.Data.Repository.IRepository;
+using Curry.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Curry
 {//foodtype upsert
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertFTModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
