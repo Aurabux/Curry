@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Curry.DataAccess.Data.Repository
 {
-    public class ApplicationUserRepository : Repository<Category>, IApplicationUserRepository
+    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
     {
         private readonly ApplicationDbContext _db;
         public ApplicationUserRepository(ApplicationDbContext db) : base(db)
@@ -17,5 +17,9 @@ namespace Curry.DataAccess.Data.Repository
             _db = db;
         }
 
+        public void Update(ApplicationUser applicationUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
