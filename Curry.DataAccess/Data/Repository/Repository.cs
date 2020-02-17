@@ -24,12 +24,12 @@ namespace Curry.DataAccess.Data.Repository
             dbset.Add(entity);
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filer = null, string includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbset;
-            if (filer != null)
+            if (filter != null)
             {
-                query = query.Where(filer);
+                query = query.Where(filter);
             }
             //included properties will be comma separated
             if (includeProperties != null)
@@ -48,12 +48,12 @@ namespace Curry.DataAccess.Data.Repository
             return dbset.Find(id);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filer = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbset;
-            if(filer !=null)
+            if(filter !=null)
             {
-                query = query.Where(filer);
+                query = query.Where(filter);
             }
             //included properties will be comma separated
             if(includeProperties != null)

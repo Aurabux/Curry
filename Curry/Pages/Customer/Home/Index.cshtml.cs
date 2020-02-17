@@ -23,8 +23,9 @@ namespace Curry.Pages.Customer.Home
         
         public void OnGet()
         {
-            MenuItemList = _unitOfWork.MenuItem.GetAll(null, null, "Category,FoodType");
-            CategoryList = _unitOfWork.Category.GetAll(null, q=> q.OrderBy(c=> c.DisplayOrder) , null);
+           MenuItemList = _unitOfWork.MenuItem.GetAll(null, null, "Category,FoodType");
+           CategoryList = _unitOfWork.Category.GetAll(null, q => q.OrderBy(c=> c.DisplayOrder) , null);
+            
         }
     }
 }

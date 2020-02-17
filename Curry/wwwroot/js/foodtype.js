@@ -39,7 +39,7 @@ function Delete(url) {
         icon: "warning",
         buttons: true,
         dangerMode: true
-    }).then((willDelete) => {
+    }.then((willDelete) => {
         if (willDelete) {
             $.ajax({
                 type: 'DELETE',
@@ -55,5 +55,6 @@ function Delete(url) {
                 }
             });
         }
-    });
+    }));
+    return willDelete;
 }

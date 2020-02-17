@@ -12,13 +12,13 @@ namespace Curry.DataAccess.Data.Repository.IRepository
         T Get(int id);
         // get all objects as Ienumerable
         IEnumerable<T> GetAll(
-            Expression<Func<T, bool>> filer = null,
+            Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = null);
 
         //get the first or default
         T GetFirstOrDefault(
-          Expression<Func<T, bool>> filer = null,
+          Expression<Func<T, bool>> filter = null,
           string includeProperties = null);
 
         //Add
