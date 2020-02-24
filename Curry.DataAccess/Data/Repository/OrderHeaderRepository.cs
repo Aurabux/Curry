@@ -20,8 +20,8 @@ namespace Curry.DataAccess.Data.Repository
 
         public void Update(OrderHeader orderHeader)
         {
-            var orderHeaderFromDb = _db.OrderDeatils.FirstOrDefault(m => m.Id == orderHeader.Id);
-            _db.OrderDeatils.Update(orderHeaderFromDb);
+            var orderHeaderFromDb = _db.OrderHeader.FirstOrDefault(m => m.Id == orderHeader.Id);
+            _db.OrderHeader.Update(orderHeaderFromDb);
             _db.SaveChanges();
 
 

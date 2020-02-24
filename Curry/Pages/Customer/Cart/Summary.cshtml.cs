@@ -9,6 +9,8 @@ using Curry.Models.ViewModels;
 using Curry.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
 
 namespace Curry.Pages.Customer.Cart
 {

@@ -16,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 using Curry.DataAccess.Data;
 using Curry.DataAccess.Data.Repository.IRepository;
 using Curry.DataAccess.Data.Repository;
+using Curry.Utility;
+using Stripe;
 
 namespace Curry
 {
@@ -49,6 +51,7 @@ namespace Curry
                 options.Cookie.IsEssential = true;
             }
             );
+            services.Configure<StripeSetting>(Configuration.GetSection("Stripe"));
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
@@ -77,7 +80,7 @@ namespace Curry
             app.UseAuthorization();
 
             app.UseMvc();
-
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
            
         }
     }

@@ -1,11 +1,12 @@
 ﻿@page
 @model Curry.Pages.Customer.Cart.SummaryModel
 @using Curry.Utility
-
+@using Microsoft.Extensions.Options
+@inject IOptions<Curry.Utility.StripeSetting> Stripe
 @{
     ViewData["Title"] = "Summary";
-}
 
+}
 <form method="post">
     <br />
 
@@ -107,7 +108,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-12 col-md-4 offset-md-8">
+                                @{ 
+                                    var OrderTotalForStripe = Math.Round((Model.OrderDetailsCartVM.OrderHeader.OrderTotal * 100), 0);
+                                }
+                                <script src="https://checkout.stripe.com/checkout.js"
+                                        class="stripe-button"
+                                        data-keyboard="@Stripe.Value.PublishableKey"
+                                        data-amount="@OrderTotalForStripe"
+                                        data-name="Curry in a Hurry"
+                                        data-label="Place Order"
+                                        data-description="Good Food, Delivered Fast."
+                                        data-locale="auto"
+                                        data-allow-remeber-me="false"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
 
+                                </script>
+                                <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>  
+                              <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
