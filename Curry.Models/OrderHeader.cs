@@ -39,7 +39,6 @@ namespace Curry.Models
         public string PhoneNumber { get; set; }
 
         public string TransactionId { get; set; }
-        [Required]
         public string Extra { get; set; }
     }
 }

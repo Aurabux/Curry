@@ -71,7 +71,7 @@
                                             <label>Additional Instructions: </label>
                                         </div>
                                         <div class="col-9">
-                                            <textarea asp-for="@Model.OrderDetailsCartVM.OrderHeader.Comments" style="height:100px;" class="form-control"></textarea>
+                                            <textarea asp-for="@Model.OrderDetailsCartVM.OrderHeader.Extra" style="height:100px;" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                                 }
                                 <script src="https://checkout.stripe.com/checkout.js"
                                         class="stripe-button"
-                                        data-keyboard="@Stripe.Value.PublishableKey"
+                                        data-key="@Stripe.Value.PublishableKey"
                                         data-amount="@OrderTotalForStripe"
                                         data-name="Curry in a Hurry"
                                         data-label="Place Order"
